@@ -1,7 +1,7 @@
-import { VStack, Image, Text, Center } from 'native-base';
+import { VStack, Image, Text, Center, Heading } from "native-base";
 
-import LogoSvg from '@assets/logo.svg';
-import BackgroundImg from '@assets/background.png';
+import LogoSvg from "@assets/logo.svg";
+import BackgroundImg from "@assets/background.png";
 
 export function SignIn() {
   return (
@@ -13,11 +13,21 @@ export function SignIn() {
         position="absolute"
       />
       <Center my="24">
-      <LogoSvg/>
-      <Text color='gray.100' font-size='sm'>Treine sua mente e seu corpo</Text>
-
+        <LogoSvg />
+        <Text color="gray.100" font-size="sm">
+          Treine sua mente e seu corpo
+        </Text>
       </Center>
-      
+      <Center>
+        <Heading
+            color="gray.100"
+            font-size="xl"
+            mb={6}
+            fontFamily="heading"
+        >
+          Acesse sua conta
+        </Heading>
+      </Center>
     </VStack>
-  )
+  );
 }
