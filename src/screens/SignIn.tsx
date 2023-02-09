@@ -6,7 +6,7 @@ import { Input } from "./Input";
 
 export function SignIn() {
   return (
-    <VStack flex={1} bg="gray.700">
+    <VStack flex={1} bg="gray.700" px={10}>
       <Image
         source={BackgroundImg}
         alt="Imagem de fundo"
@@ -29,8 +29,16 @@ export function SignIn() {
             fontFamily="heading">
           Acesse sua conta
         </Heading>
-        <Input placeholder="Email"/>
-        <Input placeholder="Senha"/>
+        <Input 
+            placeholder="Email"
+            keyboardType="email-address"
+            autoCapitalize="none"
+        />
+        <Input 
+            placeholder="Senha"
+            secureTextEntry
+            
+        />
       </Center>
     </VStack>
   );
