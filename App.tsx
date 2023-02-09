@@ -21,7 +21,7 @@ export default function App() {
         backgroundColor="transparent"
         translucent
       />
-      {fontsLoaded ? <Text>Hello world!</Text> : <View />}
+      {fontsLoaded ? <Text>Hello world!!!!!!</Text> : <View />}
     </View>
   );
 }
