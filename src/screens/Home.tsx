@@ -2,13 +2,11 @@ import { VStack, FlatList, HStack, Heading, Text } from "native-base";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 
-import { TAppNavigationRoutesProps } from '@routes/app.routes';
+import { TAppNavigationRoutesProps } from "@routes/app.routes";
 
 import { ExerciseCard } from "@components/ExerciseCard";
 import { HomeHeader } from "@components/HomeHeader";
 import { Group } from "@components/Group";
-
-
 
 export function Home() {
   const [groups, setGroups] = useState([
@@ -29,8 +27,8 @@ export function Home() {
 
   const navigation = useNavigation<TAppNavigationRoutesProps>();
 
-  function handleOpenExerciseDetails(){
-    navigation.navigate('exercise')
+  function handleOpenExerciseDetails() {
+    navigation.navigate("exercise");
   }
 
   return (
@@ -51,6 +49,7 @@ export function Home() {
         _contentContainerStyle={{ px: 8 }}
         my={10}
         maxH={10}
+        minH={10}
       />
       <VStack flex={1} px={8}>
         <HStack justifyContent={"space-between"} mb={5}>
