@@ -1,9 +1,41 @@
-import { Center, Text } from 'native-base';
+import { Heading, HStack, Icon, Text, VStack } from "native-base";
+import { TouchableOpacity } from "react-native";
+import { Feather } from "@expo/vector-icons";
 
-export function Exercise(){
-    return(
-        <Center flex={1}>
-            <Text color={'white'}>Exercise</Text>
-        </Center>
-    )
+import { useNavigation } from "@react-navigation/native";
+
+import BodySvg from "@assets/body.svg";
+
+export function Exercise() {
+  const navigation = useNavigation();
+
+  function handleGoBack() {
+    navigation.goBack();
+  }
+
+  return (
+    <VStack flex={1}>
+      <VStack px={8} bg="gray.600" pt={12}>
+        <TouchableOpacity onPress={handleGoBack}>
+          <Icon as={Feather} name="arrow-left" color="green.500" size={6} />
+        </TouchableOpacity>
+        <HStack
+          justifyContent="space-between"
+          alignContent="center"
+          mt={4}
+          mb={8}
+        >
+          <Heading color={"gray.100"} fontSize="lg" flexShrink={1}>
+            Puxada frontal
+          </Heading>
+          <HStack alignContent="center">
+            <BodySvg />
+            <Text color="gray.200" ml={1} textTransform="capitalize">
+              costas
+            </Text>
+          </HStack>
+        </HStack>
+      </VStack>
+    </VStack>
+  );
 }

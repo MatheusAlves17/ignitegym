@@ -1,9 +1,14 @@
 import { VStack, FlatList, HStack, Heading, Text } from "native-base";
+import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
+
+import { TAppNavigationRoutesProps } from '@routes/app.routes';
 
 import { ExerciseCard } from "@components/ExerciseCard";
 import { HomeHeader } from "@components/HomeHeader";
 import { Group } from "@components/Group";
+
+
 
 export function Home() {
   const [groups, setGroups] = useState([
@@ -21,6 +26,12 @@ export function Home() {
     "Puxada articulada",
   ]);
   const [groupSelected, setGroupSelected] = useState("Costas");
+
+  const navigation = useNavigation<TAppNavigationRoutesProps>();
+
+  function handleOpenExerciseDetails(){
+    navigation.navigate('exercise')
+  }
 
   return (
     <VStack flex={1}>
@@ -54,7 +65,11 @@ export function Home() {
           data={exercise}
           keyExtractor={(item) => item}
           renderItem={({ item }) => (
-            <ExerciseCard name={item} series="3 séries x 12 repetições" />
+            <ExerciseCard
+              name={item}
+              series="3 séries x 12 repetições"
+              onPress={handleOpenExerciseDetails}
+            />
           )}
           _contentContainerStyle={{ paddingBottom: 20 }}
           showsVerticalScrollIndicator={false}
