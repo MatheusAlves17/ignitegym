@@ -18,8 +18,10 @@ type TFormDataProps = {
 };
 
 const signUpSchema = yup.object({
-  name: yup.string().required("Informe um nome"),
-  email: yup.string().required("Informe um email").email("Email inválido"),
+  name: yup.string().required("Informe o nome"),
+  email: yup.string().required("Informe o email").email("Email inválido"),
+  password: yup.string().required("Informe a senha").min(8, 'A senha deve ter pelo menos 6 digitos'),
+  confirmPassword: yup.string().required('Confirme a senha').oneOf([yup.ref('password'), null], 'As senhas não são iguais')
 });
 
 export function SignUp() {
