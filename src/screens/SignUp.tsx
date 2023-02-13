@@ -21,7 +21,7 @@ const signUpSchema = yup.object({
   name: yup.string().required("Informe o nome"),
   email: yup.string().required("Informe o email").email("Email inválido"),
   password: yup.string().required("Informe a senha").min(8, 'A senha deve ter pelo menos 6 digitos'),
-  confirmPassword: yup.string().required('Confirme a senha').oneOf([yup.ref('password'), null], 'As senhas não são iguais')
+  confirmPassword: yup.string().required('Confirme a senha').oneOf([yup.ref('password')], 'As senhas não são iguais')
 });
 
 export function SignUp() {
@@ -34,13 +34,28 @@ export function SignUp() {
     resolver: yupResolver(signUpSchema),
   });
 
-  function handleSignUp({
-    email,
+  async function handleSignUp({
     name,
-    password,
-    confirmPassword,
+    email,
+    password
   }: TFormDataProps) {
-    console.log({ email, name, password, confirmPassword });
+    console.log('cadastrando');
+    
+    await fetch('http://192.168.18.14:3333/users',{
+      method: 'POST',
+      headers:{
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({name, email, password})
+    }).then(response => {
+      const data = response.json()
+      console.log(data);
+    }).catch((error) => {
+      console.log(error);
+      
+    })
+    console.log('cadastrado');
   }
 
   function handleGoBack() {
