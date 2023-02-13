@@ -4,6 +4,8 @@ import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
+import { api } from '@services/api';
+
 import { Button } from "./Button";
 import { Input } from "./Input";
 
@@ -41,21 +43,26 @@ export function SignUp() {
   }: TFormDataProps) {
     console.log('cadastrando');
     
-    await fetch('http://192.168.18.14:3333/users',{
-      method: 'POST',
-      headers:{
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({name, email, password})
-    }).then(response => {
-      const data = response.json()
-      console.log(data);
-    }).catch((error) => {
-      console.log(error);
+    const response = await api.post('/users',{name, email, password});
+    console.log(response.data);
+    
+
+    // await fetch('http://192.168.18.14:3333/users',{
+    //   method: 'POST',
+    //   headers:{
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({name, email, password})
+    // }).then(response => {
+    //   const data = response.json()
+    //   console.log(data);
+    // }).catch((error) => {
+    //   console.log(error);
       
-    })
-    console.log('cadastrado');
+    // })
+    // console.log('cadastrado');
+    
   }
 
   function handleGoBack() {
